@@ -32,5 +32,22 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+// userSchema.statics.matchPasswords = async function (password) {
+//   return await bcrypt.compare(password, this.password, function (err, result) {
+//     console.log('comparesucces');
+//   });
+// };
+
+// userSchema.statics.matchPasswords = async function (password) {
+//   return await bcrypt.compare(password, this.password).then(function (result) {
+//     console.log(result);
+//   });
+// };
+
+userSchema.methods.matchPasswordsp = async function (password) {
+  console.log('comp');
+  return await bcrypt.compare(password, this.password);
+};
 const User = mongoose.model('user', userSchema);
+
 module.exports = User;
