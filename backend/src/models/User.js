@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -36,6 +38,10 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.matchPasswordsp = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
+userSchema.methods.getSignToken = function () {
+    return jwt.sign({ id: this._id }, config.jwt_secret, { expiresIn: config.jwt_expire });
+};
+
 const User = mongoose.model('user', userSchema);
 
 module.exports = User;

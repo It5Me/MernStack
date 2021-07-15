@@ -15,11 +15,12 @@ module.exports.signup_post = async (req, res, next) => {
             password,
         });
         console.log(user);
-        res.status(201).json({
-            success: true,
-            // user,
-            token: 'asd2fasf',
-        });
+        // res.status(201).json({
+        //     success: true,
+        //     // user,
+        //     token: 'asd2fasf',
+        // });
+        sendToken(user, 201, res);
     } catch (err) {
         // res.status(500).json({
         //   success: false,
@@ -57,10 +58,11 @@ module.exports.login_post = async (req, res, next) => {
             // res.status(404).json({ success: false, error: 'Incorrect Password' });
             next(new ErrorResponse('Incorrect Password', 404));
         } else {
-            res.status(200).json({
-                success: true,
-                token: 'asfaskldhfas',
-            });
+            // res.status(200).json({
+            //     success: true,
+            //     token: 'asfaskldhfas',
+            // });
+            sendToken(user, 200, res);
         }
     } catch (err) {
         // res.status(500).json({ success: false, error: err.message });
@@ -72,4 +74,9 @@ module.exports.forgotpassword = (req, res, next) => {
 };
 module.exports.resetpassword = (req, res, next) => {
     res.send('resetpassword');
+};
+
+const sendToken = (user, statusCode, res) => {
+    const token = user.getSignToken();
+    res.status(statusCode).json({ success: true, token });
 };
