@@ -16,8 +16,8 @@ connectdb();
 app.use(userRoute);
 app.use(errorHandler);
 app.listen(config.PORT, () => {
-  console.log(`Server running on port ${config.PORT}`);
+    console.log(`Server running on port ${config.PORT}`);
 
-  //   const a = get(process, ['env', 'A']);
-  //   console.log(process.env.A);
+    //   const a = get(process, ['env', 'A']);
+    //   console.log(process.env.A);
 });
