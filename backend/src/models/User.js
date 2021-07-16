@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const crypto = require('crypto');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -35,11 +36,17 @@ userSchema.pre('save', async function (next) {
     next();
 });
 
-userSchema.methods.matchPasswordsp = async function (password) {
+userSchema.methods.matchPassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
 userSchema.methods.getSignToken = function () {
     return jwt.sign({ id: this._id }, config.jwt_secret, { expiresIn: config.jwt_expire });
+};
+userSchema.methods.getResetPasswordToken = function () {
+    const resetToken = crypto.randomBytes(20).toString('hex');
+    this.resetpasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    this.resetpasswordExpire = Date.now() + 10 * (60 * 1000);
+    return resetToken;
 };
 
 const User = mongoose.model('user', userSchema);

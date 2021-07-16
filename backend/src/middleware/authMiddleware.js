@@ -6,7 +6,7 @@ const protect = async (req, res, next) => {
     let token;
     const { authorization } = req.headers;
     console.log(req.method);
-    if (req.headers.authorization && req.headers.authorization.startsWith('Itme')) {
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         token = req.headers.authorization.split(' ')[1];
         console.log(token);
     }
@@ -32,4 +32,4 @@ const protect = async (req, res, next) => {
     }
 };
 
-module.exports = { protect };
+module.exports = protect;
