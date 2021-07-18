@@ -4,8 +4,8 @@ const config = require('../config');
 const User = require('../models/User');
 const protect = async (req, res, next) => {
     let token;
-    const { authorization } = req.headers;
-    console.log(req.method);
+    // const { authorization } = req.headers;
+    // console.log(req.method);
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         token = req.headers.authorization.split(' ')[1];
         console.log(token);
@@ -22,9 +22,9 @@ const protect = async (req, res, next) => {
         if (!user) {
             return next(new ErrorResponse('No user found with this id', 404));
         }
-        // console.log(req.user);
+        console.log(req.user);
         req.user = user;
-        // console.log(req.user);
+        console.log(req.user);
         next();
     } catch (err) {
         console.log('err  ', err.message);
