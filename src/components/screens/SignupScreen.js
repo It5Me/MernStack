@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 // import { Link } from 'react-route-dom';
 import './SignupScreen.css';
+import { BACKEND } from '../../config';
 
 const SignupScreen = ({ history }) => {
     const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ const SignupScreen = ({ history }) => {
         e.preventDefault();
 
         const config = {
-            header: {
+            headers: {
                 'Content-Type': 'application/json',
             },
         };
@@ -29,15 +30,18 @@ const SignupScreen = ({ history }) => {
         }
         try {
             const { data } = await axios.post(
-                'signup',
+                `${BACKEND}/signup`,
                 { username, email, password },
-                config()
+                config
             );
+
+            console.log('data');
+            console.log('data', { data });
 
             localStorage.setItem('authToken', data.token);
             history.push('/');
-        } catch (err) {
-            setError(err.response.data.error);
+        } catch (error) {
+            setError(error.response.data.error);
             setTimeout(() => {
                 setError('');
             }, 5000);

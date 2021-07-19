@@ -1,4 +1,3 @@
-import { props } from 'bluebird';
 import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
