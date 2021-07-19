@@ -1,4 +1,4 @@
-.register-screen {
+.signup-screen {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -6,19 +6,19 @@
     align-items: center;
 }
 
-.register-screen__form {
+.signup-screen__form {
     width: 380px;
     padding: 1.5rem;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
     background: #fff;
 }
 
-.register-screen__title {
+.signup-screen__title {
     text-align: center;
     margin-bottom: 1rem;
 }
 
-.register-screen__subtext {
+.signup-screen__subtext {
     font-size: 0.7rem;
     display: block;
     margin: 0.5rem 0;
