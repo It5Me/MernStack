@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-route-dom';
-import './Signup.css';
+// import { Link } from 'react-route-dom';
+import './SignupScreen.css';
 
 const SignupScreen = ({ history }) => {
     const [username, setUsername] = useState('');
@@ -10,7 +10,7 @@ const SignupScreen = ({ history }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
 
         const config = {
@@ -84,7 +84,7 @@ const SignupScreen = ({ history }) => {
                 <div className='form-group'>
                     <label htmlFor='confirmPassword'>ConfirmPassword: </label>
                     <input
-                        type='confirmPassword'
+                        type='password'
                         require
                         id='confirmPassword'
                         placeholder='Please enter confirmPassword'
@@ -92,6 +92,9 @@ const SignupScreen = ({ history }) => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
+                <button typr='submit' className='btn btn-primary'>
+                    Submit
+                </button>
             </form>
         </div>
     );
