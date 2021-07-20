@@ -1,21 +1,24 @@
 .signup-screen {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #3598dc;
+    margin: auto;
+    top: 200px;
+    left: 150px;
+    right: 200px;
+    bottom: 50px;
+    position: fixed;
 }
 
 .signup-screen__form {
-    width: 380px;
-    padding: 1.5rem;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-    background: #fff;
+    background-color: white;
+    position: absolute;
+    top: 22%;
+    left: 35%;
+    padding: 3em;
 }
 
 .signup-screen__title {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 .signup-screen__subtext {

@@ -57,7 +57,7 @@ const SignupScreen = ({ history }) => {
                     <input
                         type='text'
                         require
-                        id='name'
+                        id='username'
                         placeholder='Please enter username'
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
