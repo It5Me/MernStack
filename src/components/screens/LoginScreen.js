@@ -40,6 +40,7 @@ const LoginScreen = ({ history }) => {
         <div className='login-screen'>
             <form onSubmit={handleLogin} className='login-screen__form'>
                 <h3 className='login-screen__title'>Login</h3>
+                {error && <span className='error-message'>{error}</span>}
                 <div className='form-group'>
                     <label htmlFor='email'>Email:</label>
                     <input
