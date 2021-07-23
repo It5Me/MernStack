@@ -84,7 +84,7 @@ module.exports.forgotpassword = async (req, res, next) => {
 
         await user.save();
 
-        const resetUrl = `http://localhost:7000/passwordreset/${resetToken}`;
+        const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
 
         // const message = `<h1>Please go to this link to reset your password</h1>
         // <a href=${resetUrl} clicktracking=off>${resetUrl}</a>`;
