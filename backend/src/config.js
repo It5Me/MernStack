@@ -7,4 +7,5 @@ module.exports = {
     email_username: process.env.user,
     email_password: process.env.pass,
     email_from: process.env.from,
+    apiKey: process.env.apiKey,
 };

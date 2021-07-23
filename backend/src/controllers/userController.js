@@ -86,8 +86,14 @@ module.exports.forgotpassword = async (req, res, next) => {
 
         const resetUrl = `http://localhost:7000/passwordreset/${resetToken}`;
 
-        const message = `<h1>Please go to this link to reset your password</h1>
-        <a href=${resetUrl} clicktracking=off>${resetUrl}</a>`;
+        // const message = `<h1>Please go to this link to reset your password</h1>
+        // <a href=${resetUrl} clicktracking=off>${resetUrl}</a>`;
+        // const message = `<a>Please go to this link </a> ${resetUrl}`;
+        const message = `
+        <h1>You have requested a password reset</h1>
+        <p>Please make a put request to the following link:</p>
+        <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+      `;
         try {
             await sendEmail({
                 to: user.email,
@@ -104,7 +110,7 @@ module.exports.forgotpassword = async (req, res, next) => {
             user.resetpasswordExpire = undefined;
 
             user.save();
-
+            console.log(err.message);
             return next(new ErrorResponse('Email could not be send', 500));
         }
     } catch (err) {
@@ -115,7 +121,7 @@ module.exports.resetpassword = async (req, res, next) => {
     const resetpasswordToken = crypto.createHash('sha256').update(req.params.resetToken).digest('hex');
     // same resetpasswordToken
     try {
-        const user = await user.findOne({
+        const user = await User.findOne({
             resetpasswordToken,
             resetpasswordExpire: { $gt: Date.now() },
         });
@@ -134,6 +140,7 @@ module.exports.resetpassword = async (req, res, next) => {
             data: 'Password Reset Success',
         });
     } catch (err) {
+        console.log(err.message);
         next(err);
     }
 };

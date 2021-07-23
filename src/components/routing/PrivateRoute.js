@@ -8,7 +8,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                 localStorage.getItem('authToken') ? (
                     <Component {...props} />
                 ) : (
-                    <Redirect to='/login' />
+                    <Redirect to='/signup' />
+                    // when open
                 )
             }
         />

@@ -4,9 +4,6 @@ const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-const mailgun = require('mailgun-js');
-const DOMAIN = 'sandbox359d099d080043c1837c44554c868d62.mailgun.org';
-const mg = mailgun({ apiKey: api_key, domain: DOMAIN });
 
 const userSchema = new mongoose.Schema({
     username: {

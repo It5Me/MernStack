@@ -15,7 +15,6 @@ const PrivateScreen = ({ history }) => {
                     )}`,
                 },
             };
-            console.log('euse');
             try {
                 const { data } = await axios.get(`${BACKEND}/private`, config);
                 console.log(data.data);
