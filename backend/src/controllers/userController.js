@@ -2,7 +2,7 @@ const User = require('../models/User');
 const ErrorResponse = require('../utils/errorResponse');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
-const { resolveSoa } = require('dns');
+
 module.exports = {
     signup_get: (req, res) => {
         res.send('Signup get');

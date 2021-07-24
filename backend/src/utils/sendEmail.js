@@ -13,26 +13,5 @@ const sendEmail = (options) => {
     mg.messages().send(data, function (error, body) {
         console.log(body);
     });
-    // const transporter = nodemailer.createTransport({
-    //     service: config.email_service,
-    //     auth: {
-    //         user: config.email_username,
-    //         pass: config.email_password,
-    //     },
-    // });
-    // const mailOptions = {
-    //     from: config.email_from,
-    //     to: options.to,
-    //     subject: options.subject,
-    //     html: options.text,
-    // };
-
-    // transporter.sendMail(mailOptions, function (err, info) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         console.log(info);
-    //     }
-    // });
 };
 module.exports = sendEmail;

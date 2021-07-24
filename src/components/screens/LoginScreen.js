@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BACKEND } from '../../config';
+import { Link } from 'react-router-dom';
+import './LoginScreen.css';
 const LoginScreen = ({ history }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,31 +39,37 @@ const LoginScreen = ({ history }) => {
         }
     };
     return (
-        <div className='login-screen'>
+        <div className='center'>
             <form onSubmit={handleLogin} className='login-screen__form'>
                 <h3 className='login-screen__title'>Login</h3>
                 {error && <span className='error-message'>{error}</span>}
                 <div className='form-group'>
                     <label htmlFor='email'>Email:</label>
-                    <input
-                        type='email'
-                        require
-                        id='email'
-                        placeholder='Please enter your email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <div>
+                        <input
+                            type='email'
+                            require
+                            id='email'
+                            placeholder='Please enter your email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
                 </div>
                 <div className='form-group'>
-                    <label htmlFor='password'>Password:</label>
-                    <input
-                        type='password'
-                        require
-                        placeholder='Please enter your password'
-                        id='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <label htmlFor='password'>Password: </label>
+
+                    <Link to='/forgotpassword'>Forgot Password</Link>
+                    <div>
+                        <input
+                            type='password'
+                            require
+                            placeholder='Please enter your password'
+                            id='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
                 </div>
                 <button type='submit'>LOG IN</button>
             </form>

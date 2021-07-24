@@ -12,7 +12,7 @@ const ResetPasswordScreen = ({ match }) => {
         e.preventDefault();
 
         const config = {
-            headers: { 'Content-Type': 'application/josn' },
+            headers: { 'Content-Type': 'application/json' },
         };
 
         if (password !== confirmPassword) {
@@ -26,8 +26,8 @@ const ResetPasswordScreen = ({ match }) => {
 
         try {
             const { data } = await axios.put(
-                `${BACKEND}/passwordreset/${match.params.resetToken}`,
-                { password },
+                `${BACKEND}/resetpassword/${match.params.resetToken}`,
+                { password, confirmPassword },
                 config
             );
             console.log(data);
@@ -43,6 +43,12 @@ const ResetPasswordScreen = ({ match }) => {
         <div className='resetpassword-screen'>
             <form onClick={handleResetPassword}>
                 <h3>ResetPassword</h3>
+                {error && <span className='error-message'>{error} </span>}
+                {success && (
+                    <span className='success-message'>
+                        {success} <Link to='/login'>Login</Link>
+                    </span>
+                )}
                 <div className='form-group'>
                     <label htmlFor='password'>New Password</label>
                     <input
